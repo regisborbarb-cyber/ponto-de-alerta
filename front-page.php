@@ -130,7 +130,13 @@ $ultimas = new WP_Query(array(
                                      aria-hidden="<?php echo $slide_index === 0 ? 'false' : 'true'; ?>">
                                 <a class="pa-hero-image" href="<?php the_permalink(); ?>" tabindex="<?php echo $slide_index === 0 ? '0' : '-1'; ?>">
                                     <?php if (has_post_thumbnail()) : ?>
-                                        <?php the_post_thumbnail('large', array('loading' => $slide_index === 0 ? 'eager' : 'lazy')); ?>
+                                        <span class="pa-hero-image-background" aria-hidden="true">
+                                            <?php the_post_thumbnail('large', array('loading' => 'lazy', 'alt' => '')); ?>
+                                        </span>
+                                        <?php the_post_thumbnail('large', array(
+                                            'loading' => $slide_index === 0 ? 'eager' : 'lazy',
+                                            'class'   => 'attachment-large size-large pa-hero-image-foreground',
+                                        )); ?>
                                     <?php else : ?>
                                         <div class="pa-no-image">PONTO DE ALERTA</div>
                                     <?php endif; ?>
