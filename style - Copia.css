@@ -1,0 +1,744 @@
+/*
+Theme Name: Portal Notícias
+Description: Tema do portal Ponto de Alerta
+Version: 2.0
+Text Domain: portal-noticias
+*/
+
+:root {
+  --red: #d90000;
+  --red-dark: #a90000;
+  --black: #111;
+  --text: #202020;
+  --muted: #777;
+  --line: #e5e5e5;
+  --page: 1400px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; color: var(--text); background: #fff;
+  font: 16px/1.55 Arial, Helvetica, sans-serif;
+}
+a { color: inherit; text-decoration: none; transition: color .18s ease; }
+a:hover { color: var(--red); }
+img { display: block; max-width: 100%; height: auto; }
+button, input, select, textarea { font: inherit; }
+.site-main { width: min(var(--page), calc(100% - 36px)); margin: 0 auto; padding-bottom: 42px; }
+
+/* CABEÇALHO */
+.site-header.pa-reference-header { background: var(--black); color: #fff; border-bottom: 4px solid var(--red); }
+.pa-masthead-inner {
+  width: min(var(--page), calc(100% - 36px)); min-height: 132px; margin: auto;
+  display: flex; align-items: center; justify-content: space-between; gap: 28px; padding: 20px 0;
+}
+.pa-brand-lockup { flex: 0 0 auto; min-width: 0; }
+.pa-brand-logo { display: flex; align-items: center; gap: 10px; color: #fff; }
+.pa-brand-siren { width: 65px; height: 65px; flex: 0 0 65px; }
+.pa-brand-wordmark { display: flex; flex-direction: column; line-height: .9; font-weight: 900; letter-spacing: -.8px; }
+.pa-brand-top { font-size: 21px; }
+.pa-brand-wordmark strong { margin-top: 5px; color: var(--red); font-size: clamp(30px, 3vw, 43px); font-style: italic; }
+.pa-masthead-tagline { display: flex; align-items: center; gap: 12px; margin-right: auto; }
+.pa-masthead-tagline > span { width: 4px; height: 42px; background: var(--red); }
+.pa-masthead-tagline p { margin: 0; color: #ddd; font-size: 14px; line-height: 1.45; }
+.pa-header-tools { display: flex; align-items: center; gap: 22px; min-width: 0; }
+.pa-social-icons { display: flex; align-items: center; gap: 12px; }
+.pa-social-icons span { display: inline-flex; align-items: center; justify-content: center; width: 25px; height: 25px; color: #fff; }
+.pa-social-icons svg { width: 22px; height: 22px; }
+.pa-header-search form { display: flex; max-width: 260px; }
+.pa-header-search label { min-width: 0; }
+.pa-header-search input[type="search"] { width: 190px; min-width: 0; padding: 10px 11px; border: 1px solid #555; border-radius: 4px 0 0 4px; background: #fff; color: #222; }
+.pa-header-search input[type="submit"],
+.pa-header-search button { padding: 10px 12px; border: 0; border-radius: 0 4px 4px 0; background: var(--red); color: #fff; cursor: pointer; }
+.pa-reference-navigation { background: var(--red); color: #fff; }
+.pa-navigation-inner { width: min(var(--page), calc(100% - 36px)); margin: auto; }
+.pa-navigation-inner .menu-principal,
+.pa-navigation-inner ul { display: flex; flex-wrap: wrap; align-items: stretch; gap: 0; list-style: none; padding: 0; margin: 0; }
+.pa-navigation-inner li { margin: 0; padding: 0; }
+.pa-navigation-inner a { display: block; padding: 13px 17px; color: #fff; font-size: 13px; font-weight: 800; text-transform: uppercase; }
+.pa-navigation-inner a:hover,
+.pa-navigation-inner .current-menu-item > a { background: var(--red-dark); color: #fff; }
+
+/* ÚLTIMA HORA */
+.pa-breaking { display: flex; align-items: stretch; margin: 24px 0 22px; min-height: 43px; background: #f2f2f2; border-left: 4px solid var(--red); overflow: hidden; }
+.pa-breaking-label { display: flex; align-items: center; flex: 0 0 auto; padding: 10px 15px; background: var(--red); color: #fff; font-size: 12px; font-weight: 900; }
+.pa-breaking-label span { margin-left: 8px; }
+.pa-breaking-news { display: flex; align-items: center; gap: 26px; min-width: 0; padding: 8px 15px; overflow: hidden; }
+.pa-breaking-news a { flex: 0 0 auto; font-size: 13px; font-weight: 700; }
+
+/* BLOCO SUPERIOR: manchete + secundárias + lateral */
+.pa-top-news { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, .9fr) minmax(260px, .78fr); gap: 22px; align-items: start; margin: 0 0 34px; }
+.pa-main-headline, .pa-secondary-news, .pa-most-read { min-width: 0; }
+.pa-hero-card, .pa-secondary-card { min-width: 0; overflow: hidden; background: #fff; }
+.pa-hero-image, .pa-secondary-image, .pa-most-read-image, .pa-region-image, .pa-police-image { display: block; position: relative; overflow: hidden; background: #eee; }
+.pa-hero-image { aspect-ratio: 16 / 10; }
+.pa-hero-image img, .pa-secondary-image img, .pa-most-read-image img, .pa-region-image img, .pa-police-image img { width: 100%; height: 100%; object-fit: cover; }
+.pa-hero-image img { position: absolute; inset: 0; }
+.pa-hero-content { padding: 15px 0 0; }
+.pa-category { display: inline-block; margin: 0 0 7px; color: var(--red); font-size: 11px; font-weight: 900; letter-spacing: .4px; text-transform: uppercase; }
+.pa-hero-content h1 { margin: 0 0 9px; font-size: clamp(25px, 2.5vw, 36px); line-height: 1.13; font-weight: 900; }
+.pa-hero-content p { margin: 0 0 10px; color: #555; font-size: 14px; }
+.pa-meta { color: var(--muted); font-size: 12px; }
+.pa-meta span { margin: 0 5px; }
+.pa-secondary-news { display: grid; gap: 20px; }
+.pa-secondary-image { aspect-ratio: 16 / 9; }
+.pa-secondary-content { padding-top: 10px; }
+.pa-secondary-content .pa-category { margin-bottom: 4px; }
+.pa-secondary-content h2 { margin: 0 0 8px; font-size: 18px; line-height: 1.25; font-weight: 800; }
+.pa-section-heading { margin: 0 0 10px; padding: 0 0 10px; border-bottom: 2px solid var(--red); font-size: 18px; line-height: 1.2; font-weight: 900; }
+.pa-section-heading span { color: var(--red); }
+.pa-list-item { display: grid; grid-template-columns: 25px minmax(0, 1fr) 68px; gap: 10px; align-items: start; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.pa-list-number { display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: var(--red); color: #fff; font-size: 12px; font-weight: 900; }
+.pa-list-content { min-width: 0; }
+.pa-list-content h3 { margin: 0 0 5px; font-size: 13px; line-height: 1.35; font-weight: 800; }
+.pa-list-date { color: var(--muted); font-size: 11px; }
+.pa-list-thumb { display: block; width: 68px; height: 58px; overflow: hidden; }
+.pa-list-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+/* TÍTULOS E CARTÕES */
+.pa-most-read-section, .pa-region-section, .pa-police-section { margin: 36px 0 0; min-width: 0; }
+.pa-section-title { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: 0 0 18px; padding-bottom: 10px; border-bottom: 2px solid var(--red); }
+.pa-section-title h2 { margin: 0; font-size: 22px; line-height: 1.2; font-weight: 900; text-transform: uppercase; }
+.pa-section-title h2 span { color: var(--red); }
+.pa-section-title > a { flex: 0 0 auto; color: var(--red); font-size: 11px; font-weight: 900; }
+.pa-most-read-grid, .pa-region-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
+.pa-most-read-card, .pa-region-card { min-width: 0; overflow: hidden; border: 1px solid var(--line); background: #fff; }
+.pa-most-read-image, .pa-region-image { aspect-ratio: 16 / 9; }
+.pa-most-read-image img, .pa-region-image img { position: absolute; inset: 0; }
+.pa-most-read-position { position: absolute; top: 9px; left: 9px; z-index: 1; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--red); color: #fff; font-size: 14px; font-weight: 900; }
+.pa-most-read-content, .pa-region-content { padding: 13px; }
+.pa-most-read-label { display: block; margin-bottom: 7px; color: var(--red); font-size: 10px; font-weight: 900; }
+.pa-most-read-content h3, .pa-region-content h3 { margin: 0 0 10px; font-size: 16px; line-height: 1.3; font-weight: 800; }
+.pa-most-read-meta { display: flex; flex-wrap: wrap; gap: 5px 10px; color: var(--muted); font-size: 11px; }
+.pa-most-read-views { white-space: normal; }
+.pa-region-content .pa-category { margin-bottom: 5px; }
+.pa-most-read-empty, .pa-region-empty, .pa-empty { padding: 20px; background: #f7f7f7; color: #666; }
+
+/* GIRO POLICIAL */
+.pa-police-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr)); gap: 20px; align-items: stretch; }
+.pa-police-featured, .pa-police-card { display: flex; flex-direction: column; min-width: 0; overflow: hidden; border: 1px solid var(--line); background: #fff; }
+.pa-police-image { aspect-ratio: 16 / 10; flex: 0 0 auto; }
+.pa-police-image img { position: absolute; inset: 0; }
+.pa-police-content { display: flex; flex: 1 1 auto; flex-direction: column; align-items: flex-start; padding: 13px; }
+.pa-police-content h3 { margin: 0 0 9px; font-size: 16px; line-height: 1.3; font-weight: 800; }
+.pa-police-content p { margin: 0 0 10px; color: #555; font-size: 13px; }
+.pa-police-content .pa-meta { margin-top: auto; padding-top: 8px; }
+.pa-police-featured .pa-police-image { aspect-ratio: 16 / 9; }
+.pa-police-featured .pa-police-content h3 { font-size: 21px; }
+.pa-no-image { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; min-height: 100px; padding: 15px; background: #222; color: #fff; font-size: 15px; font-weight: 900; text-align: center; }
+
+/* PÁGINAS INTERNAS E ELEMENTOS COMUNS */
+.container { width: min(var(--page), calc(100% - 36px)); margin: 0 auto; }
+.single-post-content { width: min(800px, calc(100% - 36px)); margin: 40px auto; }
+.single-post-content h1 { font-size: clamp(28px, 4vw, 40px); line-height: 1.2; }
+.single-post-content .post-meta { color: var(--muted); font-size: 13px; }
+.single-post-content .post-thumbnail { margin: 24px 0; }
+.single-post-content .post-thumbnail img { width: 100%; }
+.single-post-content .entry-content { font-size: 18px; line-height: 1.8; }
+.pagination, .nav-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin: 30px 0; }
+.pagination a, .pagination span, .nav-links a, .nav-links span { padding: 8px 13px; border: 1px solid var(--line); border-radius: 4px; }
+.pagination .current, .nav-links .current { background: var(--red); color: #fff; }
+.site-footer { margin-top: 40px; padding: 30px 20px; background: var(--black); color: #fff; text-align: center; }
+.site-footer p { margin: 5px 0; font-size: 14px; }
+
+/* RESPONSIVIDADE */
+@media (max-width: 1100px) {
+  .pa-top-news { grid-template-columns: minmax(0, 1.2fr) minmax(0, .9fr); }
+  .pa-most-read { grid-column: 1 / -1; }
+  .pa-most-read { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 20px; }
+  .pa-most-read .pa-section-heading { grid-column: 1 / -1; }
+  .pa-police-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pa-police-featured { grid-column: 1 / -1; }
+}
+@media (max-width: 760px) {
+  .pa-masthead-inner { flex-wrap: wrap; gap: 16px; padding: 17px 0; }
+  .pa-masthead-tagline { margin-right: 0; }
+  .pa-header-tools { width: 100%; justify-content: space-between; }
+  .pa-top-news { grid-template-columns: minmax(0, 1fr); }
+  .pa-secondary-news { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pa-most-read { display: block; grid-column: auto; }
+  .pa-most-read-grid, .pa-region-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pa-navigation-inner a { padding: 11px 12px; }
+  .pa-breaking-news { flex-wrap: wrap; gap: 4px 18px; }
+}
+@media (max-width: 520px) {
+  .site-main, .pa-masthead-inner, .pa-navigation-inner, .container { width: calc(100% - 26px); }
+  .pa-brand-siren { width: 49px; height: 49px; flex-basis: 49px; }
+  .pa-brand-top { font-size: 16px; }
+  .pa-brand-wordmark strong { font-size: 29px; }
+  .pa-masthead-tagline p { font-size: 12px; }
+  .pa-header-tools { align-items: flex-start; flex-direction: column; gap: 12px; }
+  .pa-header-search, .pa-header-search form { width: 100%; max-width: none; }
+  .pa-header-search input[type="search"] { width: 100%; }
+  .pa-breaking { flex-direction: column; }
+  .pa-breaking-label { justify-content: center; }
+  .pa-breaking-news { flex-direction: column; align-items: flex-start; }
+  .pa-secondary-news, .pa-most-read-grid, .pa-region-grid, .pa-police-grid { grid-template-columns: minmax(0, 1fr); }
+  .pa-police-featured { grid-column: auto; }
+  .pa-section-title h2 { font-size: 19px; }
+  .pa-hero-content h1 { font-size: 27px; }
+  .pa-secondary-content h2, .pa-most-read-content h3, .pa-region-content h3, .pa-police-content h3 { font-size: 17px; }
+}
+/* AJUSTES FINAIS — PONTO DE ALERTA
+   Cole este bloco AO FINAL do style.css atual. */
+
+/* 1. Manchetes: imagem com proporção correta e placeholder visível quando faltar foto */
+.pa-top-news {
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, .9fr) minmax(245px, .78fr);
+  gap: 18px;
+  align-items: start;
+}
+.pa-main-headline,
+.pa-secondary-news,
+.pa-most-read { min-width: 0; }
+.pa-hero-image,
+.pa-secondary-image,
+.pa-region-image,
+.pa-most-read-image,
+.pa-police-image {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  background: #171717;
+}
+.pa-hero-image { aspect-ratio: 16 / 10; }
+.pa-secondary-image { aspect-ratio: 16 / 9; }
+.pa-hero-image img,
+.pa-secondary-image img,
+.pa-region-image img,
+.pa-most-read-image img,
+.pa-police-image img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.pa-no-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 135px;
+  padding: 18px;
+  background: linear-gradient(135deg, #151515 0%, #292929 60%, #b90000 60%, #ed0000 100%);
+  color: #fff;
+  font-size: clamp(15px, 1.4vw, 22px);
+  font-weight: 900;
+  letter-spacing: .5px;
+  text-align: center;
+}
+.pa-hero-image .pa-no-image { min-height: 0; position: absolute; inset: 0; }
+.pa-secondary-image .pa-no-image { min-height: 0; position: absolute; inset: 0; font-size: 14px; }
+
+/* 2. Mais notícias: mantém a lateral ao lado das manchetes em desktop */
+.pa-most-read { display: block; grid-column: auto; }
+.pa-list-item { grid-template-columns: 24px minmax(0, 1fr) 58px; gap: 8px; }
+.pa-list-thumb { width: 58px; height: 50px; }
+.pa-list-content h3 { overflow-wrap: anywhere; }
+
+/* 3. Mais lidas e destaques: quatro colunas quando há quatro notícias */
+.pa-most-read-grid,
+.pa-region-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  align-items: stretch;
+}
+.pa-most-read-card,
+.pa-region-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid #e5e5e5;
+  background: #fff;
+}
+.pa-most-read-image,
+.pa-region-image { aspect-ratio: 16 / 9; flex: 0 0 auto; }
+.pa-most-read-content,
+.pa-region-content { display: flex; flex: 1 1 auto; flex-direction: column; padding: 11px; }
+.pa-most-read-content h3,
+.pa-region-content h3 { font-size: 15px; line-height: 1.28; overflow-wrap: anywhere; }
+.pa-region-content p { margin: 0 0 10px; font-size: 13px; line-height: 1.5; }
+.pa-region-content .pa-meta { margin-top: auto; padding-top: 8px; }
+.pa-region-grid-count-1 { grid-template-columns: minmax(0, 1fr); }
+.pa-region-grid-count-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.pa-region-grid-count-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.pa-region-grid-count-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+/* 4. Giro policial: cartões alinhados e sem grandes espaços vazios */
+.pa-police-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  align-items: stretch;
+}
+.pa-police-featured,
+.pa-police-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid #e5e5e5;
+  background: #fff;
+}
+.pa-police-image { aspect-ratio: 16 / 10; flex: 0 0 auto; }
+.pa-police-featured .pa-police-image { aspect-ratio: 16 / 9; }
+.pa-police-content {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 11px;
+  min-width: 0;
+}
+.pa-police-content h3 { margin: 0 0 8px; font-size: 15px; line-height: 1.28; overflow-wrap: anywhere; }
+.pa-police-featured .pa-police-content h3 { font-size: 18px; }
+.pa-police-content p { margin: 0 0 8px; font-size: 12px; line-height: 1.45; }
+.pa-police-content .pa-meta { margin-top: auto; padding-top: 8px; }
+.pa-police-grid-count-1 { grid-template-columns: minmax(0, 1fr); }
+.pa-police-grid-count-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.pa-police-grid-count-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.pa-police-grid-count-4 { grid-template-columns: minmax(0, 1.35fr) repeat(3, minmax(0, 1fr)); }
+
+/* 5. Espaçamento geral */
+.pa-most-read-section,
+.pa-region-section,
+.pa-police-section { margin-top: 28px; }
+.pa-section-title { margin-bottom: 14px; }
+
+/* Tablets */
+@media (max-width: 1050px) {
+  .pa-top-news { grid-template-columns: minmax(0, 1.2fr) minmax(0, .9fr); }
+  .pa-most-read { grid-column: 1 / -1; }
+  .pa-most-read-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .pa-police-grid,
+  .pa-police-grid-count-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pa-police-featured { grid-column: 1 / -1; }
+  .pa-region-grid-count-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (max-width: 700px) {
+  .pa-top-news { grid-template-columns: minmax(0, 1fr); }
+  .pa-most-read { grid-column: auto; }
+  .pa-secondary-news { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .pa-most-read-grid,
+  .pa-region-grid,
+  .pa-region-grid-count-3,
+  .pa-region-grid-count-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pa-police-grid,
+  .pa-police-grid-count-2,
+  .pa-police-grid-count-3,
+  .pa-police-grid-count-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pa-police-featured { grid-column: 1 / -1; }
+}
+@media (max-width: 480px) {
+  .pa-secondary-news,
+  .pa-most-read-grid,
+  .pa-region-grid,
+  .pa-region-grid-count-2,
+  .pa-region-grid-count-3,
+  .pa-region-grid-count-4,
+  .pa-police-grid,
+  .pa-police-grid-count-2,
+  .pa-police-grid-count-3,
+  .pa-police-grid-count-4 { grid-template-columns: minmax(0, 1fr); }
+  .pa-police-featured { grid-column: auto; }
+}
+/* PONTO DE ALERTA — ajuste responsivo das grades da página inicial */
+
+/* Destaques da Região: a grade acompanha a quantidade real de notícias. */
+.pa-region-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  align-items: stretch;
+}
+.pa-region-grid.pa-region-grid-count-1 { grid-template-columns: minmax(0, 1fr); }
+.pa-region-grid.pa-region-grid-count-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.pa-region-grid.pa-region-grid-count-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.pa-region-grid.pa-region-grid-count-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+.pa-region-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+}
+.pa-region-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #f1f1f1;
+}
+.pa-region-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.pa-region-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 12px;
+}
+.pa-region-content h3 { margin: 5px 0 8px; }
+.pa-region-content p { margin: 0 0 12px; }
+.pa-region-content .pa-meta { margin-top: auto; padding-top: 8px; }
+
+/* Giro Policial: grade alinhada e imagens de proporção consistente. */
+.pa-police-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  align-items: stretch;
+}
+.pa-police-grid.pa-police-grid-count-1 { grid-template-columns: minmax(0, 1fr); }
+.pa-police-grid.pa-police-grid-count-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.pa-police-grid.pa-police-grid-count-3,
+.pa-police-grid.pa-police-grid-count-4 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.pa-police-featured,
+.pa-police-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+}
+.pa-police-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #f1f1f1;
+}
+.pa-police-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.pa-police-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 12px;
+}
+.pa-police-content h3 { margin: 5px 0 8px; }
+.pa-police-content p { margin: 0 0 12px; }
+.pa-police-content .pa-meta { margin-top: auto; padding-top: 8px; }
+
+/* Evita que imagens das manchetes secundárias sejam esticadas. */
+.pa-secondary-image { display: block; overflow: hidden; }
+.pa-secondary-image img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+@media (max-width: 900px) {
+  .pa-region-grid.pa-region-grid-count-4,
+  .pa-region-grid.pa-region-grid-count-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pa-police-grid,
+  .pa-police-grid.pa-police-grid-count-3,
+  .pa-police-grid.pa-police-grid-count-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .pa-region-grid,
+  .pa-region-grid.pa-region-grid-count-1,
+  .pa-region-grid.pa-region-grid-count-2,
+  .pa-region-grid.pa-region-grid-count-3,
+  .pa-region-grid.pa-region-grid-count-4,
+  .pa-police-grid,
+  .pa-police-grid.pa-police-grid-count-1,
+  .pa-police-grid.pa-police-grid-count-2,
+  .pa-police-grid.pa-police-grid-count-3,
+  .pa-police-grid.pa-police-grid-count-4 { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* =========================================
+   PONTO DE ALERTA — ZOOM SUAVE NAS FOTOS
+   ========================================= */
+
+.pa-top-news img,
+.pa-most-read img,
+.pa-region-grid img,
+.pa-police-grid img,
+.pa-news-card img,
+.pa-card img {
+    transition: transform 0.35s ease;
+}
+
+/* Amplia a foto ao passar o mouse */
+.pa-top-news a:hover img,
+.pa-most-read a:hover img,
+.pa-region-grid a:hover img,
+.pa-police-grid a:hover img,
+.pa-news-card a:hover img,
+.pa-card a:hover img {
+    transform: scale(1.06);
+}
+
+/* Impede a foto ampliada de sair dos limites do cartão */
+.pa-top-news a,
+.pa-most-read a,
+.pa-region-grid a,
+.pa-police-grid a,
+.pa-news-card a,
+.pa-card a {
+    overflow: hidden;
+}
+
+/* Respeita quem prefere movimentos reduzidos */
+@media (prefers-reduced-motion: reduce) {
+    .pa-top-news img,
+    .pa-most-read img,
+    .pa-region-grid img,
+    .pa-police-grid img,
+    .pa-news-card img,
+    .pa-card img {
+        transition: none;
+    }
+}
+/* PONTO DE ALERTA — ETAPA 1: CORREÇÃO SEGURA DE IMAGENS
+   Cole no FINAL do style.css atual.
+   Não substitui nem apaga as regras existentes. */
+
+/* Imagens de notícia: exibir sem distorção e manter o corte dentro do cartão */
+.pa-hero-image,
+.pa-secondary-image,
+.pa-most-read-image,
+.pa-region-image,
+.pa-police-image {
+    overflow: hidden;
+}
+
+.pa-hero-image img,
+.pa-secondary-image img,
+.pa-most-read-image img,
+.pa-region-image img,
+.pa-police-image img {
+    display: block;
+    max-width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Quando uma publicação NÃO tem imagem destacada, mostrar um placeholder
+   da identidade do portal em vez de um retângulo preto vazio. */
+.pa-no-image {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    min-height: 150px;
+    padding: 20px;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 50% 35%, rgba(237, 0, 0, .24), transparent 42%),
+        linear-gradient(135deg, #242424, #090909);
+    border-bottom: 4px solid #ed0000;
+    color: #fff;
+    font-size: clamp(15px, 1.5vw, 22px);
+    font-weight: 900;
+    letter-spacing: .08em;
+    line-height: 1.2;
+    text-align: center;
+}
+
+/* O placeholder acompanha o formato das áreas de imagem */
+.pa-hero-image .pa-no-image,
+.pa-secondary-image .pa-no-image,
+.pa-most-read-image .pa-no-image,
+.pa-region-image .pa-no-image,
+.pa-police-image .pa-no-image {
+    aspect-ratio: 16 / 9;
+}
+
+/* Zoom suave apenas nas imagens que realmente existem */
+.pa-hero-image img,
+.pa-secondary-image img,
+.pa-most-read-image img,
+.pa-region-image img,
+.pa-police-image img {
+    transition: transform .35s ease;
+}
+
+.pa-hero-card:hover .pa-hero-image img,
+.pa-secondary-card:hover .pa-secondary-image img,
+.pa-most-read-card:hover .pa-most-read-image img,
+.pa-region-card:hover .pa-region-image img,
+.pa-police-card:hover .pa-police-image img,
+.pa-police-featured:hover .pa-police-image img {
+    transform: scale(1.045);
+}
+
+/* Mantém o zoom dentro do cartão */
+.pa-hero-card,
+.pa-secondary-card,
+.pa-most-read-card,
+.pa-region-card,
+.pa-police-card,
+.pa-police-featured {
+    overflow: hidden;
+}
+
+/* Acessibilidade: respeita preferência por movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+    .pa-hero-image img,
+    .pa-secondary-image img,
+    .pa-most-read-image img,
+    .pa-region-image img,
+    .pa-police-image img {
+        transition: none;
+    }
+
+    .pa-hero-card:hover .pa-hero-image img,
+    .pa-secondary-card:hover .pa-secondary-image img,
+    .pa-most-read-card:hover .pa-most-read-image img,
+    .pa-region-card:hover .pa-region-image img,
+    .pa-police-card:hover .pa-police-image img,
+    .pa-police-featured:hover .pa-police-image img {
+        transform: none;
+    }
+}
+/* PONTO DE ALERTA — ETAPA 1B
+   Padronização de cartões e grades.
+   Cole no FINAL do style.css atual. Não apague os ajustes anteriores. */
+
+/* As grades distribuem os cartões conforme a quantidade disponível */
+.pa-most-read-grid,
+.pa-region-grid,
+.pa-police-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+    align-items: stretch;
+    gap: 14px;
+}
+
+/* Cartões com estrutura uniforme */
+.pa-most-read-card,
+.pa-region-card,
+.pa-police-featured,
+.pa-police-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* Imagens com proporção consistente */
+.pa-most-read-image,
+.pa-region-image,
+.pa-police-image {
+    display: block;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    overflow: hidden;
+    flex: 0 0 auto;
+}
+
+.pa-most-read-image img,
+.pa-region-image img,
+.pa-police-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform .35s ease;
+}
+
+/* Conteúdo ocupa o espaço do cartão sem esticar artificialmente a imagem */
+.pa-most-read-content,
+.pa-region-content,
+.pa-police-content {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.pa-most-read-content h3,
+.pa-region-content h3,
+.pa-police-content h3 {
+    overflow-wrap: anywhere;
+}
+
+.pa-most-read-meta,
+.pa-region-content .pa-meta,
+.pa-police-content .pa-meta {
+    margin-top: auto;
+    padding-top: 10px;
+}
+
+/* Manchetes secundárias com imagem consistente */
+.pa-secondary-image {
+    display: block;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    overflow: hidden;
+}
+
+.pa-secondary-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform .35s ease;
+}
+
+/* Zoom suave limitado ao cartão */
+.pa-most-read-card:hover .pa-most-read-image img,
+.pa-region-card:hover .pa-region-image img,
+.pa-police-featured:hover .pa-police-image img,
+.pa-police-card:hover .pa-police-image img,
+.pa-secondary-card:hover .pa-secondary-image img {
+    transform: scale(1.045);
+}
+
+/* Telas médias: no máximo duas colunas */
+@media (max-width: 900px) {
+    .pa-most-read-grid,
+    .pa-region-grid,
+    .pa-police-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Celulares: cartões em uma coluna para não apertar os textos */
+@media (max-width: 560px) {
+    .pa-most-read-grid,
+    .pa-region-grid,
+    .pa-police-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pa-most-read-image img,
+    .pa-region-image img,
+    .pa-police-image img,
+    .pa-secondary-image img {
+        transition: none;
+    }
+
+    .pa-most-read-card:hover .pa-most-read-image img,
+    .pa-region-card:hover .pa-region-image img,
+    .pa-police-featured:hover .pa-police-image img,
+    .pa-police-card:hover .pa-police-image img,
+    .pa-secondary-card:hover .pa-secondary-image img {
+        transform: none;
+    }
+}

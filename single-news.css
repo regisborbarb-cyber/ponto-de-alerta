@@ -1,0 +1,13 @@
+/*
+ * PONTO DE ALERTA — estilos específicos das notícias
+ * Este arquivo é carregado somente nas páginas individuais de notícias.
+ */
+
+/* Mantém o corpo da notícia justificado, incluindo parágrafos e listas. */
+.pa-single-content,
+.pa-single-content p,
+.pa-single-content li,
+.pa-single-content blockquote {
+    text-align: justify;
+    text-justify: inter-word;
+}

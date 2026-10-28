@@ -1,0 +1,12 @@
+PONTO DE ALERTA — PADRONIZAÇÃO DA MANCHETE PRINCIPAL
+
+Arquivo incluído: style.css
+
+Instalação:
+1. Faça uma cópia de segurança do style.css atual do tema.
+2. Substitua o style.css pelo arquivo deste pacote. Ele foi preparado com base no style.css enviado em 28/10/2026.
+3. Atualize a página inicial com Ctrl+F5 para evitar o cache.
+
+O ajuste reserva espaço fixo para até três linhas no título e três linhas no resumo da manchete principal, para que os metadados e a altura do bloco não fiquem mudando conforme o tamanho do título. O CSS existente foi preservado e o ajuste foi acrescentado ao final.
+
+Se você fez outras alterações no style.css depois de enviar a versão usada como base, guarde uma cópia e compare antes de substituir. O arquivo foi alterado no código, mas precisa ser conferido no WordPress local.
