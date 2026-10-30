@@ -14,20 +14,22 @@
             <div class="pa-brand-lockup">
                 <a href="<?php echo esc_url(home_url('/')); ?>" class="pa-brand-logo" aria-label="Ponto de Alerta — página inicial">
                     <svg class="pa-brand-siren" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
-                        <path d="M15 70 C2 58 12 39 28 34 L34 30 L31 43 C19 49 17 59 27 66 Z" fill="#ed0000"/>
-                        <path d="M18 77 C30 88 54 88 68 76 L77 72 L72 84 C56 97 31 95 17 84 Z" fill="#b90000"/>
-                        <path d="M31 70 L35 31 C36 17 45 8 57 8 C69 8 77 17 78 31 L82 70 Z" fill="#f40000" stroke="#ff4242" stroke-width="3"/>
-                        <path d="M42 29 C43 18 49 13 56 13 L56 69 L34 69 Z" fill="#ff7777" opacity=".85"/>
-                        <ellipse cx="57" cy="42" rx="18" ry="17" fill="#ff2626"/>
-                        <ellipse cx="57" cy="42" rx="10" ry="10" fill="#ff5a5a"/>
-                        <path d="M27 70 H85 L91 79 H22 Z" fill="#111" stroke="#555" stroke-width="2"/>
-                        <path d="M31 78 H84 L79 84 H35 Z" fill="#777"/>
+                        <path d="M15 70 C2 58 12 39 28 34 L34 30 L31 43 C19 49 17 59 27 66 Z" fill="#168a45"/>
+                        <path d="M18 77 C30 88 54 88 68 76 L77 72 L72 84 C56 97 31 95 17 84 Z" fill="#0f6833"/>
+                        <path d="M31 70 L35 31 C36 17 45 8 57 8 C69 8 77 17 78 31 L82 70 Z" fill="#0066a6" stroke="#8fd0f2" stroke-width="3"/>
+                        <path d="M42 29 C43 18 49 13 56 13 L56 69 L34 69 Z" fill="#8fd0f2" opacity=".85"/>
+                        <ellipse cx="57" cy="42" rx="18" ry="17" fill="#168a45"/>
+                        <ellipse cx="57" cy="42" rx="10" ry="10" fill="#83d4a0"/>
+                        <path d="M27 70 H85 L91 79 H22 Z" fill="#004b78" stroke="#8ab9d1" stroke-width="2"/>
+                        <path d="M31 78 H84 L79 84 H35 Z" fill="#fff"/>
                     </svg>
                     <span class="pa-brand-wordmark"><span class="pa-brand-top">PONTO DE</span><strong>ALERTA</strong></span>
                 </a>
             </div>
 
             <div class="pa-masthead-tagline"><span></span><p>Notícias de Água Clara<br>e Região</p></div>
+
+            <?php if (function_exists('pa_exibir_anuncio')) { pa_exibir_anuncio('header-square'); } ?>
 
             <div class="pa-header-tools">
                 <div class="pa-social-icons" aria-label="Redes sociais">
@@ -41,14 +43,21 @@
         </div>
     </div>
 
-    <nav class="main-navigation pa-reference-navigation" aria-label="Menu principal">
+    <nav id="pa-primary-navigation" class="main-navigation pa-reference-navigation" aria-label="Menu de categorias">
         <div class="pa-navigation-inner">
+            <?php if (has_nav_menu('menu-principal')) : ?>
+                <button class="pa-menu-toggle" type="button" aria-label="Abrir menu de categorias" aria-expanded="false" aria-controls="pa-category-menu">
+                    <span class="pa-menu-toggle-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+                    <span>Categorias</span>
+                </button>
+            <?php endif; ?>
             <?php
             wp_nav_menu(array(
                 'theme_location' => 'menu-principal',
                 'container'      => false,
                 'fallback_cb'    => false,
                 'menu_class'     => 'menu-principal',
+                'menu_id'        => 'pa-category-menu',
             ));
             ?>
         </div>

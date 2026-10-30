@@ -69,7 +69,7 @@
     transition: background .2s ease;
 }
 .pa-carousel-arrow:hover,
-.pa-carousel-arrow:focus { background: var(--red, #e60000); color: #fff; }
+.pa-carousel-arrow:focus { background: var(--blue, #0066a6); color: #fff; }
 .pa-carousel-prev { left: 8px; }
 .pa-carousel-next { right: 8px; }
 .pa-carousel-dots { display: flex; gap: 7px; justify-content: center; padding: 11px 0 0; }
@@ -82,13 +82,15 @@
     background: #c8c8c8;
     cursor: pointer;
 }
-.pa-carousel-dot.is-active { background: var(--red, #e60000); transform: scale(1.15); }
+.pa-carousel-dot.is-active { background: var(--blue, #0066a6); transform: scale(1.15); }
 .pa-secondary-news { display: grid; grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 13px; align-content: start; }
 .pa-secondary-card { display: grid; grid-template-rows: auto 1fr; align-content: start; }
 .pa-secondary-image {
     display: block;
     position: relative;
-    aspect-ratio: 16 / 8;
+    width: 70%;
+    margin-inline: auto;
+    aspect-ratio: 1 / 1;
     overflow: hidden;
     background: #f2f2f2;
 }
@@ -100,6 +102,37 @@
     height: 100%;
     object-fit: cover;
     object-position: center;
+}
+.pa-secondary-overlay {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    padding: 9px 10px;
+    background: rgba(255, 255, 255, .55);
+    color: #202020;
+}
+.pa-secondary-overlay .pa-category {
+    display: block;
+    margin: 0 0 2px;
+    font-size: 10px;
+    line-height: 1.2;
+}
+.pa-secondary-overlay .pa-meta {
+    margin-bottom: 3px;
+    color: #555;
+    font-size: 10px;
+    line-height: 1.2;
+}
+.pa-secondary-overlay-title {
+    margin: 0;
+    color: #202020;
+    font-size: clamp(12px, 1vw, 14px);
+    font-weight: 800;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
 }
 
 .pa-secondary-content { padding-top: 6px; }
@@ -116,7 +149,8 @@
     .pa-top-news { grid-template-columns: 1fr; gap: 22px; }
     .pa-hero-slide .pa-hero-content h1 { font-size: 25px; }
     .pa-secondary-news { grid-template-rows: none; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-    .pa-secondary-content h2 { font-size: 14px; }
+    .pa-secondary-overlay { padding: 8px; }
+    .pa-secondary-overlay-title { font-size: 12px; }
     .pa-carousel-arrow { top: 22%; width: 32px; height: 38px; }
 }
 @media (prefers-reduced-motion: reduce) {

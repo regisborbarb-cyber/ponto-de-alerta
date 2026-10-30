@@ -22,11 +22,21 @@ add_action('after_setup_theme', 'portal_noticias_setup');
 
 
 function portal_noticias_enqueue_assets() {
+    $style_css_path = get_stylesheet_directory() . '/style.css';
     wp_enqueue_style(
         'portal-noticias-style',
         get_stylesheet_uri(),
         array(),
-        '1.0'
+        file_exists($style_css_path) ? (string) filemtime($style_css_path) : '1.0'
+    );
+
+    $navigation_js = get_stylesheet_directory() . '/pa-navigation.js';
+    wp_enqueue_script(
+        'pa-navigation',
+        get_stylesheet_directory_uri() . '/pa-navigation.js',
+        array(),
+        file_exists($navigation_js) ? (string) filemtime($navigation_js) : '1.0',
+        true
     );
 
     // Recursos exclusivos do carrossel da página inicial.
@@ -46,6 +56,15 @@ function portal_noticias_enqueue_assets() {
             get_stylesheet_directory_uri() . '/home-carousel.js',
             array(),
             file_exists($carousel_js) ? (string) filemtime($carousel_js) : '1.0',
+            true
+        );
+
+        $dynamic_top_ad_js = get_stylesheet_directory() . '/pa-dynamic-top-ad.js';
+        wp_enqueue_script(
+            'pa-dynamic-top-ad',
+            get_stylesheet_directory_uri() . '/pa-dynamic-top-ad.js',
+            array(),
+            file_exists($dynamic_top_ad_js) ? (string) filemtime($dynamic_top_ad_js) : '1.0',
             true
         );
     }
@@ -163,17 +182,52 @@ function pa_exibir_anuncio($local) {
     $locais_validos = array(
         'topo',
         'noticia',
-        'lateral'
+        'lateral',
+        'after-main',
+        'after-most-read',
+        'after-region',
+        'after-police',
+        'header-square',
+        'sidebar-bottom'
     );
 
     if (!in_array($local, $locais_validos, true)) {
         return;
     }
 
+    $nova_posicao = in_array($local, array(
+        'after-main',
+        'after-most-read',
+        'after-region',
+        'after-police',
+        'header-square',
+        'sidebar-bottom'
+    ), true);
+    $formato_horizontal = in_array($local, array(
+        'after-main',
+        'after-most-read',
+        'after-region',
+        'after-police'
+    ), true);
+    $classes = array(
+        'pa-anuncio',
+        'pa-anuncio-' . $local
+    );
+    if ($nova_posicao) {
+        $classes[] = 'pa-ad-slot';
+        $classes[] = 'pa-ad-' . $local;
+    }
+    if ($formato_horizontal) {
+        $classes[] = 'pa-ad-horizontal';
+    }
+    $class_name = implode(' ', $classes);
+
     ?>
-    <div class="pa-anuncio pa-anuncio-<?php
-        echo esc_attr($local);
-    ?>">
+    <?php if ($nova_posicao) : ?>
+        <aside id="pa-ad-<?php echo esc_attr($local); ?>" class="<?php echo esc_attr($class_name); ?>" aria-label="Publicidade">
+    <?php else : ?>
+        <div class="<?php echo esc_attr($class_name); ?>">
+    <?php endif; ?>
 
         <span class="pa-anuncio-label">
             PUBLICIDADE
@@ -181,15 +235,25 @@ function pa_exibir_anuncio($local) {
 
         <div class="pa-anuncio-conteudo">
 
-            <strong>Seu negócio pode aparecer aqui!</strong>
+            <?php if ($local === 'topo' && function_exists('the_ad_placement')) : ?>
+                <?php the_ad_placement('banner-principal'); ?>
+            <?php else : ?>
+                <strong><?php echo $nova_posicao ? 'Seu anúncio pode aparecer aqui' : 'Seu negócio pode aparecer aqui!'; ?></strong>
 
-            <p>
-                Anuncie no Ponto de Alerta e divulgue sua
-                empresa para os leitores de Água Clara e região.
-            </p>
+                <?php if (!$nova_posicao) : ?>
+                    <p>
+                        Anuncie no Ponto de Alerta e divulgue sua
+                        empresa para os leitores de Água Clara e região.
+                    </p>
+                <?php endif; ?>
+            <?php endif; ?>
 
         </div>
 
-    </div>
+    <?php if ($nova_posicao) : ?>
+        </aside>
+    <?php else : ?>
+        </div>
+    <?php endif; ?>
     <?php
 }

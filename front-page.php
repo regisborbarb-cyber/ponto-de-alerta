@@ -206,33 +206,25 @@ $ultimas = new WP_Query(array(
 
                             <?php endif; ?>
 
-                        </a>
+                            <div class="pa-secondary-overlay">
+                                <?php
+                                $categorias = get_the_category();
 
-                        <div class="pa-secondary-content">
+                                if (!empty($categorias)) :
+                                ?>
+                                    <span class="pa-category">
+                                        <?php echo esc_html($categorias[0]->name); ?>
+                                    </span>
+                                <?php endif; ?>
 
-                            <?php
-                            $categorias = get_the_category();
+                                <div class="pa-meta">
+                                    <?php echo esc_html(get_the_date('d/m/Y')); ?>
+                                </div>
 
-                            if (!empty($categorias)) :
-                            ?>
-
-                                <span class="pa-category">
-                                    <?php echo esc_html($categorias[0]->name); ?>
-                                </span>
-
-                            <?php endif; ?>
-
-                            <h2>
-                                <a href="<?php the_permalink(); ?>">
-                                    <?php the_title(); ?>
-                                </a>
-                            </h2>
-
-                            <div class="pa-meta">
-                                <?php echo esc_html(get_the_date('d/m/Y')); ?>
+                                <h2 class="pa-secondary-overlay-title"><?php the_title(); ?></h2>
                             </div>
 
-                        </div>
+                        </a>
 
                     </article>
 
@@ -245,6 +237,8 @@ $ultimas = new WP_Query(array(
             <?php endif; ?>
 
         </div>
+
+        <?php if (function_exists('pa_exibir_anuncio')) { pa_exibir_anuncio('after-main'); } ?>
 
         <!-- COLUNA DE NOTÍCIAS RECENTES -->
         <aside class="pa-most-read">
@@ -303,6 +297,8 @@ $ultimas = new WP_Query(array(
                 <p>As próximas notícias aparecerão aqui.</p>
 
             <?php endif; ?>
+
+            <?php if (function_exists('pa_exibir_anuncio')) { pa_exibir_anuncio('sidebar-bottom'); } ?>
 
         </aside>
 
@@ -397,6 +393,8 @@ $ultimas = new WP_Query(array(
         <?php wp_reset_postdata(); ?>
 
     </section>
+
+    <?php if (function_exists('pa_exibir_anuncio')) { pa_exibir_anuncio('after-most-read'); } ?>
 
     <!-- DESTAQUES DA REGIÃO -->
     <section class="pa-region-section">
@@ -493,6 +491,9 @@ $ultimas = new WP_Query(array(
         </div>
 
     </section>
+
+    <?php if (function_exists('pa_exibir_anuncio')) { pa_exibir_anuncio('after-region'); } ?>
+
     <!-- NOTÍCIAS POLICIAIS -->
     <section class="pa-police-section">
 
@@ -623,6 +624,8 @@ $ultimas = new WP_Query(array(
         <?php wp_reset_postdata(); ?>
 
     </section>
+
+    <?php if (function_exists('pa_exibir_anuncio')) { pa_exibir_anuncio('after-police'); } ?>
 </div>
 
 <?php
